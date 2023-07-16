@@ -1,0 +1,60 @@
+body {
+  background-color: #f7f6f5;
+  min-height: 3200px;
+}
+
+section {
+  padding-top: 6rem;
+}
+
+.bg-color {
+  background-color: #8602f1;
+}
+
+.navbar img {
+  width: 30px;
+  height: 30px;
+}
+
+.navbar a {
+  color: white;
+}
+
+.jumbotron {
+  padding-top: 6rem;
+  background-color: #e5d8f0;
+}
+
+.jumbotron img {
+  width: 220px;
+}
+
+#product {
+  background-color: #e5d8f0;
+}
+
+#product img {
+  width: 400px;
+}
+
+.custom-box img {
+  border-radius: 10px;
+}
+
+.custom-box img:hover {
+  border-radius: 10px;
+  border: 2px solid #8602f1;
+  transition: 0.1s;
+}
+
+#contact .form-control:focus {
+  border-color: #8602f1;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(120, 38, 136, 0.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(120, 38, 136, 0.6);
+}
+
+footer a {
+  color: white;
+  text-decoration: underline;
+  font-weight: bold;
+}
