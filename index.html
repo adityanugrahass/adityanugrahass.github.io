@@ -180,7 +180,20 @@
         </div>
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <form>
+            <div
+              class="alert alert-success alert-dismissible fade show d-none my-alert"
+              role="alert"
+            >
+              <strong>Terimakasih!</strong> Silahkan tunggu tim CS kami menghubungi Anda
+              <i class="bi bi-emoji-smile"></i>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+              ></button>
+            </div>
+            <form name="spirit-contact-form">
               <div class="mb-3">
                 <label for="Name" class="form-label">Nama Lengkap</label>
                 <input
@@ -189,6 +202,7 @@
                   id="Name"
                   placeholder="*masukkan nama"
                   aria-describedby="Name"
+                  name="Nama"
                 />
               </div>
               <div class="mb-3">
@@ -199,6 +213,7 @@
                   id="PhoneNumber"
                   placeholder="*masukkan no whatsapp"
                   aria-describedby="PhoneNumber"
+                  name="No WA"
                 />
               </div>
               <div class="mb-3">
@@ -209,9 +224,18 @@
                   id="City"
                   placeholder="*masukkan domisili saat ini"
                   aria-describedby="City"
+                  name="Domisili"
                 />
               </div>
-              <button type="submit" class="btn btn-success">Submit</button>
+              <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+              <button class="btn btn-primary btn-loading d-none" type="button" disabled>
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+                Loading...
+              </button>
             </form>
           </div>
         </div>
@@ -242,5 +266,39 @@
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwwB5WHSW_AnhOEH8Enyq75rFphde5EsySs-fz5ZCna1Vbaxf60GnTFCVZFgAsrJ84Taw/exec";
+      const form = document.forms["spirit-contact-form"];
+      const btnSubmit = document.querySelector(".btn-submit");
+      const btnLoading = document.querySelector(".btn-loading");
+      const myAlert = document.querySelector(".my-alert");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // ketika tombol submit di klik, jangan di submit dulu tapi
+        // tampilkan tombol loading, hilangkan tombol submit
+        btnLoading.classList.toggle("d-none");
+        btnSubmit.classList.toggle("d-none");
+        fetch(scriptURL, { method: "POST", body: new FormData(form) })
+          .then((response) => {
+            // setelah tombol submit di klik
+            // tampilkan tombol submit, hilangkan tombol loading
+            btnLoading.classList.toggle("d-none");
+            btnSubmit.classList.toggle("d-none");
+            // setelah tombol submit di klik, selain di atas
+            // tampilkan juga alertnya
+            myAlert.classList.toggle("d-none");
+            // setelah tombol submit di klik, selain di atas
+            // hilangkan tulisan yang ada di form
+            form.reset();
+            // setelah semua berhasil
+            // tampilkan pemberitahuan sukses di console browser
+            console.log("Success!", response);
+          })
+          .catch((error) => console.error("Error!", error.message));
+      });
+    </script>
   </body>
 </html>
