@@ -58,11 +58,11 @@ section {
   padding: 0;
 }
 
-.custom-box img {
+#product img {
   border-radius: 10px;
 }
 
-.custom-box img:hover {
+#product img:hover {
   border-radius: 10px;
   border: 2px solid #8602f1;
   transition: 0.1s;
